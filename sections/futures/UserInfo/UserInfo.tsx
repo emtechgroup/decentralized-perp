@@ -25,9 +25,13 @@ import useGetFuturesMarkets from 'queries/futures/useGetFuturesMarkets';
 import useGetFuturesPositionForAccount from 'queries/futures/useGetFuturesPositionForAccount';
 import { FuturesTrade } from 'queries/futures/types';
 import { useRecoilValue } from 'recoil';
-import { walletAddressState } from 'store/wallet';
 import useGetFuturesTradesForAccount from 'queries/futures/useGetFuturesTradesForAccount';
-import { currentMarketState, openOrdersState, positionState } from 'store/futures';
+import {
+	currentMarketState,
+	futuresAccountState,
+	openOrdersState,
+	positionState,
+} from 'store/futures';
 import useExchangeRatesQuery from 'queries/rates/useExchangeRatesQuery';
 
 import UploadIcon from 'assets/svg/futures/upload-icon.svg';
@@ -36,6 +40,7 @@ import TransfersIcon from 'assets/svg/futures/icon-transfers.svg';
 import CalculatorIcon from 'assets/svg/futures/calculator-icon.svg';
 import OrderHistoryIcon from 'assets/svg/futures/icon-order-history.svg';
 import OpenPositionsIcon from 'assets/svg/futures/icon-open-positions.svg';
+import { useFuturesContext } from 'contexts/FuturesContext';
 
 enum FuturesTab {
 	POSITION = 'position',
@@ -50,7 +55,7 @@ const FutureTabs = Object.values(FuturesTab);
 
 const UserInfo: React.FC = () => {
 	const router = useRouter();
-	const walletAddress = useRecoilValue(walletAddressState);
+	const { selectedFuturesAddress } = useRecoilValue(futuresAccountState);
 	const position = useRecoilValue(positionState);
 	const marketAsset = useRecoilValue(currentMarketState);
 	const openOrders = useRecoilValue(openOrdersState);
@@ -77,7 +82,7 @@ const UserInfo: React.FC = () => {
 		[marginTransfersQuery.isSuccess, marginTransfersQuery.data]
 	);
 
-	const futuresTradesQuery = useGetFuturesTradesForAccount(marketAsset, walletAddress);
+	const futuresTradesQuery = useGetFuturesTradesForAccount(marketAsset, selectedFuturesAddress);
 
 	const history: FuturesTrade[] = useMemo(
 		() => (futuresTradesQuery.isSuccess ? futuresTradesQuery?.data ?? [] : []),
