@@ -18,8 +18,6 @@ import useGetNextPriceDetails from 'queries/futures/useGetNextPriceDetails';
 import Badge from 'components/Badge';
 import { currentMarketState, futuresAccountState, openOrdersState } from 'store/futures';
 import { useRefetchContext } from 'contexts/RefetchContext';
-import Connector from 'containers/Connector';
-import { useFuturesContext } from 'contexts/FuturesContext';
 
 const OpenOrdersTable: React.FC = () => {
 	const { t } = useTranslation();

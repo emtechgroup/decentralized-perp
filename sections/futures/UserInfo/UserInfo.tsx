@@ -40,7 +40,6 @@ import TransfersIcon from 'assets/svg/futures/icon-transfers.svg';
 import CalculatorIcon from 'assets/svg/futures/calculator-icon.svg';
 import OrderHistoryIcon from 'assets/svg/futures/icon-order-history.svg';
 import OpenPositionsIcon from 'assets/svg/futures/icon-open-positions.svg';
-import { useFuturesContext } from 'contexts/FuturesContext';
 
 enum FuturesTab {
 	POSITION = 'position',

@@ -10,7 +10,6 @@ import QUERY_KEYS from 'constants/queryKeys';
 import Connector from 'containers/Connector';
 import { getFuturesMarketContract } from './utils';
 import { futuresAccountState, marketKeyState } from 'store/futures';
-import { useFuturesContext } from 'contexts/FuturesContext';
 
 export type NextPriceDetails = {
 	keeperDeposit: Wei;

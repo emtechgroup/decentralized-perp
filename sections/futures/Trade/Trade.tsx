@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { useRecoilState, useRecoilValue } from 'recoil';
+import { useRecoilState } from 'recoil';
 
 import SegmentedControl from 'components/SegmentedControl';
 import { futuresAccountState, leverageSideState, orderTypeState } from 'store/futures';

@@ -3,7 +3,6 @@ import Wei, { wei } from '@synthetixio/wei';
 
 import { getFuturesKey, getSynthsKey } from 'store/utils';
 import {
-	CrossMarginAccountState,
 	FuturesAccountState,
 	FuturesMarket,
 	FuturesPosition,

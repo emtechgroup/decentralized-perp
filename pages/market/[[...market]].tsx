@@ -1,8 +1,8 @@
-import { useEffect, FC, useState } from 'react';
+import { useEffect, FC } from 'react';
 import styled from 'styled-components';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import { useRecoilState, useSetRecoilState } from 'recoil';
+import { useSetRecoilState } from 'recoil';
 
 import { DesktopOnlyView, MobileOrTabletView } from 'components/Media';
 
