@@ -17,8 +17,7 @@ import ManagePosition from './ManagePosition';
 import MarketActions from './MarketActions';
 import MarketInfoBox from '../MarketInfoBox';
 import { useFuturesContext } from 'contexts/FuturesContext';
-import CrossMarginOnboard from '../CrossMarginOnboard';
-import Button from 'components/Button';
+import AccountTypeToggle from './AccountTypeToggle';
 
 const Trade: React.FC = () => {
 	const {
@@ -36,47 +35,11 @@ const Trade: React.FC = () => {
 
 	const [leverageSide, setLeverageSide] = useRecoilState(leverageSideState);
 	const [orderType, setOrderType] = useRecoilState(orderTypeState);
-	const [openModal, setOpenModal] = useState<'trade' | 'next-price' | 'onboard' | null>(null);
-
-	const onCreatedAccount = () => {
-		// TODO: handle complete
-	};
-
-	const onSelectCrossMargin = () => {
-		accountState.crossMarginAddress
-			? setAccountState({
-					...accountState,
-					selectedType: 'cross_margin',
-					selectedFuturesAddress: accountState.crossMarginAddress,
-			  })
-			: setOpenModal('onboard');
-	};
+	const [openModal, setOpenModal] = useState<'trade' | 'next-price' | null>(null);
 
 	return (
 		<div>
-			<CrossMarginOnboard
-				isOpen={openModal === 'onboard'}
-				onClose={() => setOpenModal(null)}
-				onComplete={onCreatedAccount}
-			/>
-
-			{accountState.selectedType === 'cross_margin' ? (
-				<LegacyFuturesButton
-					onClick={() =>
-						setAccountState({
-							...accountState,
-							selectedType: 'isolated_margin',
-							selectedFuturesAddress: accountState.walletAddress,
-						})
-					}
-				>
-					← Switch to Legacy Futures
-				</LegacyFuturesButton>
-			) : (
-				<SwitchAccountButton variant="primary" onClick={onSelectCrossMargin}>
-					Switch to Cross Margin
-				</SwitchAccountButton>
-			)}
+			<AccountTypeToggle />
 
 			<MarketsDropdown />
 
@@ -137,17 +100,4 @@ export default Trade;
 
 const StyledSegmentedControl = styled(SegmentedControl)`
 	margin-bottom: 16px;
-`;
-
-const SwitchAccountButton = styled(Button)`
-	margin-bottom: 24px;
-	overflow: hidden;
-	white-space: nowrap;
-	height: 55px;
-	width: 100%;
-`;
-
-const LegacyFuturesButton = styled.div`
-	cursor: pointer;
-	margin-bottom: 24px;
 `;
