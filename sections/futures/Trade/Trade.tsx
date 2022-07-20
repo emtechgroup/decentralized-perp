@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { useRecoilState } from 'recoil';
 
 import SegmentedControl from 'components/SegmentedControl';
-import { futuresAccountState, leverageSideState, orderTypeState } from 'store/futures';
+import { leverageSideState, orderTypeState } from 'store/futures';
 
 import LeverageInput from '../LeverageInput';
 import TradeConfirmationModal from './TradeConfirmationModal';
@@ -30,8 +30,6 @@ const Trade: React.FC = () => {
 		isMarketCapReached,
 		orderTxn,
 	} = useFuturesContext();
-
-	const [accountState, setAccountState] = useRecoilState(futuresAccountState);
 
 	const [leverageSide, setLeverageSide] = useRecoilState(leverageSideState);
 	const [orderType, setOrderType] = useRecoilState(orderTypeState);
